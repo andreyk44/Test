@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kiuss.Domain.Shared.Model;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators.Internal;
 
 namespace TestEntityFramework
 {
@@ -11,10 +13,16 @@ namespace TestEntityFramework
 
       using (var ctx = TestDatabase.GetDbContext())
       {
-        foreach (var header in ctx.Headers)
+        foreach (var r in ctx.RefsA)
         {
-          Console.WriteLine(header);
+          Console.WriteLine(r);
         }
+
+        foreach (var r in ctx.RefsB)
+        {
+          Console.WriteLine(r);
+        }
+
       }
 
       Console.WriteLine("Press any key..");
@@ -34,13 +42,8 @@ namespace TestEntityFramework
 
     private static void WriteTargets(TestDbContext ctx)
     {
-      ctx.Headers.Add(HeaderA.New("Header_A"));
-      ctx.Headers.Add(HeaderB.New(new List<Detail>()
-      {
-        Detail.New("Datail_B_1"),
-        Detail.New("Datail_B_2")
-      }));
-
+      object[] refs = { RefA.New("A"), RefB.New("B") };
+      ctx.AddRange(refs);
       ctx.SaveChanges();
     }
 
