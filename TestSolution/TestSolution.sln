@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.757
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEntityFramework", "TestEntityFramework\TestEntityFramework.csproj", "{E6793BA9-665B-4305-BD08-F448F9FDDCDF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kiuss.Domain", "Kiuss.Domain\Kiuss.Domain.csproj", "{B2833B4A-FA12-42A5-B8BF-9518B4CF6D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.Csv2Json", "Company.Csv2Json\Company.Csv2Json.csproj", "{44D3D79B-D9EB-4126-A3E2-AF3AC7B2F6C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B2833B4A-FA12-42A5-B8BF-9518B4CF6D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2833B4A-FA12-42A5-B8BF-9518B4CF6D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2833B4A-FA12-42A5-B8BF-9518B4CF6D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44D3D79B-D9EB-4126-A3E2-AF3AC7B2F6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44D3D79B-D9EB-4126-A3E2-AF3AC7B2F6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44D3D79B-D9EB-4126-A3E2-AF3AC7B2F6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44D3D79B-D9EB-4126-A3E2-AF3AC7B2F6C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,8 +17,9 @@ namespace TestEntityFramework
       modelBuilder.Entity<Header>().ToTable(null, "test");
 
       modelBuilder.Entity<Header>()
-        .HasDiscriminator(e => e.Type)
+        .HasDiscriminator<string>("discr")
         .HasValue<HeaderA>("A")
+        .HasValue<HeaderAA>("AA")
         .HasValue<HeaderB>("B")
         ;
 
@@ -34,22 +35,28 @@ namespace TestEntityFramework
     }
   }
 
+  public enum HeaderType
+  {
+    Undefined,
+    TypeA,
+    TypeB
+  }
+
   public class Header : EntityBase<Guid>
   {
     protected Header(Guid id) : base(id) { }
-
-    public string Type { get; protected set; }
+    protected string Discr = "";
+    public HeaderType Type { get; protected set; } = HeaderType.Undefined;
   }
 
   public class HeaderA : Header
   {
     public HeaderA() : base(Guid.NewGuid())
     {
-      Type = "A";
+      Type = HeaderType.TypeA;
+      Discr = "A";
     }
-
-    public string Name { get; private set; }
-
+    public string Name { get; protected set; }
     public static HeaderA New(string name) => new HeaderA()
     {
       Name = name
@@ -57,15 +64,30 @@ namespace TestEntityFramework
     public override string ToString() => Name;
   }
 
+  public class HeaderAA : HeaderA
+  {
+    public HeaderAA()
+    {
+      Discr = "AA";
+    }
+    public string ExtraProp { get; set; }
+    public static HeaderAA New(string name, string extraProp) => new HeaderAA()
+    {
+      Name = name,
+      ExtraProp = extraProp
+    };
+    public override string ToString() => $"{Name}('{ExtraProp}')";
+  }
+
+
   public class HeaderB : Header
   {
     public HeaderB() : base(Guid.NewGuid())
     {
-      Type = "B";
+      Type = HeaderType.TypeB;
+      Discr = "B";
     }
-
     public IList<Detail> Details { get; private set; }
-
     public static HeaderB New(IList<Detail> details) => new HeaderB()
     {
       Details = details
@@ -86,7 +108,6 @@ namespace TestEntityFramework
     {
       Value = value
     };
-
     public override string ToString() => Value;
   }
 

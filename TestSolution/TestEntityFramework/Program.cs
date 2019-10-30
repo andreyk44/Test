@@ -35,6 +35,7 @@ namespace TestEntityFramework
     private static void WriteTargets(TestDbContext ctx)
     {
       ctx.Headers.Add(HeaderA.New("Header_A"));
+      ctx.Headers.Add(HeaderAA.New("Header_AA", "Доп свойство AA"));
       ctx.Headers.Add(HeaderB.New(new List<Detail>()
       {
         Detail.New("Datail_B_1"),
